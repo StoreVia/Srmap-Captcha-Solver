@@ -1,7 +1,7 @@
-fastapi
-uvicorn
-pillow
-onnxruntime
-torchvision
-numpy
-python-multipart
+fastapi>=0.95
+uvicorn>=0.22
+pillow>=9.0
+python-multipart>=0.0.6
+onnxruntime>=1.16
+torchvision>=0.14
+numpy>=1.23
