@@ -12,8 +12,8 @@ SRMAP uses two visually similar CAPTCHA formats:
 
 | Portal | Original Size |
 |------|---------------|
-| Student Portal | ~120 × 25 |
-| Parent Portal | ~220 × 30 |
+| Student Portal | ~220 × 30 |
+| Parent Portal | ~120 × 25 |
 
 This solver handles **both types automatically** using a unified preprocessing pipeline.
 
