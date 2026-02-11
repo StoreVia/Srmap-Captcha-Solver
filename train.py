@@ -82,7 +82,7 @@ class CRNN(nn.Module):
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    ds = CaptchaDataset(["dataset/parent", "dataset/parent"])
+    ds = CaptchaDataset(["dataset/parent", "dataset/student"])
     dl = DataLoader(
         ds,
         batch_size=128,
@@ -98,7 +98,7 @@ if __name__ == "__main__":
     loss_fn = nn.CTCLoss(blank=0, zero_infinity=True)
     scaler = torch.cuda.amp.GradScaler()
 
-    for epoch in range(12):
+    for epoch in range(40):
         model.train()
         total = 0.0
         for imgs, labels, lengths in dl:
