@@ -46,27 +46,30 @@ def decode(logits):
         out.append(s)
     return out
 
-request_queue = asyncio.Queue(maxsize=MAX_QUEUE_SIZE)
 app = FastAPI()
 
 @app.on_event("startup")
 async def startup():
+    app.state.request_queue = asyncio.Queue(maxsize=MAX_QUEUE_SIZE)
     asyncio.create_task(worker())
 
 async def worker():
+    queue = app.state.request_queue
     while True:
-        img, future = await request_queue.get()
+        img, future = await queue.get()
         try:
             logits = session.run(None, {"input": img})[0]
             future.set_result(decode(logits)[0])
         except Exception as e:
             future.set_exception(e)
         finally:
-            request_queue.task_done()
+            queue.task_done()
 
 @app.post("/captcha", response_class=PlainTextResponse)
 async def predict(file: UploadFile = File(...)):
-    if request_queue.full():
+    queue = app.state.request_queue
+
+    if queue.full():
         raise HTTPException(status_code=503, detail="busy")
 
     img = Image.open(file.file).convert("L")
@@ -75,7 +78,7 @@ async def predict(file: UploadFile = File(...)):
 
     loop = asyncio.get_running_loop()
     future = loop.create_future()
-    await request_queue.put((img, future))
+    await queue.put((img, future))
 
     try:
         return await asyncio.wait_for(future, timeout=INFERENCE_TIMEOUT)
