@@ -7,7 +7,7 @@ import string
 chars = string.ascii_uppercase + string.digits + "_"
 idx_to_char = {i: c for i, c in enumerate(chars)}
 
-session = ort.InferenceSession("captcha_model.onnx")
+session = ort.InferenceSession("./models/captcha_model.onnx")
 
 transform = transforms.Compose([
     transforms.Grayscale(),
