@@ -82,7 +82,7 @@ class CRNN(nn.Module):
 if __name__ == "__main__":
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
-    ds = CaptchaDataset(["dataset/parent", "dataset/student"])
+    ds = CaptchaDataset(["../dataset/parent", "../dataset/student"])
     dl = DataLoader(
         ds,
         batch_size=128,
