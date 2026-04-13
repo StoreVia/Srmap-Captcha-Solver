@@ -2,11 +2,11 @@ torch
 torchvision
 pandas==2.2.1
 pillow==10.2.0
-numpy==1.24.3
+numpy
 onnx==1.15.0
-onnxruntime==1.17.1
+onnxruntime
 onnx2tf
-tensorflow==2.13.0
+tensorflow
 sng4onnx
 psutil
 onnx_graphsurgeon
