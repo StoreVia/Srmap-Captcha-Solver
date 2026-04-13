@@ -3,7 +3,7 @@ torchvision
 pandas==2.2.1
 pillow==10.2.0
 numpy
-onnx==1.15.0
+onnx
 onnxruntime
 onnx2tf
 tensorflow
