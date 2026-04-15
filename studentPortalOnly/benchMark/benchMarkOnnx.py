@@ -16,15 +16,15 @@ so.intra_op_num_threads = os.cpu_count()
 so.inter_op_num_threads = os.cpu_count()
 so.execution_mode = ort.ExecutionMode.ORT_PARALLEL
 
-session = ort.InferenceSession("captcha_model.onnx", sess_options=so)
+session = ort.InferenceSession("../models/captcha_model.onnx", sess_options=so)
 
 transform = transforms.Compose([
     transforms.Grayscale(),
     transforms.ToTensor()
 ])
 
-image_dir = "../dataset/student/captchas"
-csv_path = "../dataset/student/labels.csv"
+image_dir = "../../dataset/student/captchas"
+csv_path = "../../dataset/student/labels.csv"
 
 df = pd.read_csv(csv_path, dtype=str)
 df["text"] = df["text"].str.upper()

@@ -11,9 +11,9 @@ from collections import defaultdict
 chars = string.ascii_uppercase + string.digits + "_"
 idx_to_char = {i: c for i, c in enumerate(chars)}
 
-IMAGE_DIR = "../dataset/student/captchas"
-CSV_PATH = "../dataset/student/labels.csv"
-MODEL_PATH = "captcha_model_float16.tflite"
+IMAGE_DIR = "../../dataset/student/captchas"
+CSV_PATH = "../../dataset/student/labels.csv"
+MODEL_PATH = "../models/captcha_model_float16.tflite"
 
 df = pd.read_csv(CSV_PATH, dtype=str)
 df["text"] = df["text"].str.upper()
