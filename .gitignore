@@ -1,6 +1,2 @@
-
-/venv
-dataset/.DS_Store
+venv
 .DS_Store
-dataset/parent/Archive.zip
-dataset/student/Archive.zip
